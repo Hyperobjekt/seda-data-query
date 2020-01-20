@@ -1,0 +1,54 @@
+org: lanex
+service: seda-data
+app: seda-data-app
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  getSchool:
+    handler: handler.getSchool
+    events:
+      - http:
+          path: schools/{id}
+          method: get
+          cors: true
+  getSchools:
+    handler: handler.getSchools
+    events:
+      - http:
+          path: schools
+          method: get
+          cors: true
+  getDistrict:
+    handler: handler.getDistrict
+    events:
+      - http:
+          path: districts/{id}
+          method: get
+          cors: true
+  getDistricts:
+    handler: handler.getDistricts
+    events:
+      - http:
+          path: districts
+          method: get
+          cors: true
+  getCounty:
+    handler: handler.getCounty
+    events:
+      - http:
+          path: counties/{id}
+          method: get
+          cors: true
+  getCounties:
+    handler: handler.getCounties
+    events:
+      - http:
+          path: counties
+          method: get
+          cors: true
+
+plugins:
+  - serverless-offline
