@@ -5,7 +5,11 @@ app: seda-data-app
 provider:
   name: aws
   runtime: nodejs12.x
-
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "secretsmanager:GetSecretValue"
+      Resource: "*"
 functions:
   getSchool:
     handler: handler.getSchool
